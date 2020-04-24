@@ -2,3 +2,7 @@ goodreadscredentials.txt
 flask_session
 Lib
 Scripts
+__pycache__
+Include
+../.vscode
+../flask_session
