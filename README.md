@@ -1,6 +1,6 @@
 # Project 1
 
-Web Programming with Python and JavaScript
+### Web Programming with Python and JavaScript
 
 The requirements of this application are as follows:
 
