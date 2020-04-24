@@ -21,6 +21,7 @@ Review Submission: On the book page, users should be able to submit a review: co
 Goodreads Review Data: On your book page, you should also display (if available) the average rating and number of ratings the work has received from Goodreads.
 
 API Access: If users make a GET request to your website’s /api/<isbn> route, where <isbn> is an ISBN number, your website should return a JSON response containing the book’s title, author, publication date, ISBN number, review count, and average score. The resulting JSON should follow the format:
+```json
 {
     "title": "Memory",
     "author": "Doug Lloyd",
@@ -29,3 +30,4 @@ API Access: If users make a GET request to your website’s /api/<isbn> route, w
     "review_count": 28,
     "average_score": 5.0
 }
+```
