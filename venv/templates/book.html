@@ -1,0 +1,46 @@
+{% extends "layout.html" %} {% block title %} Book {% endblock %} {% block nav %}
+<button class="btn btn-light">Logout</button> {% endblock %} {% block body %}
+<div class="jumbotron mt-5">
+    <h1 class="display-4 mb-3">{{book.title}}</h1>
+    <p class="lead">
+        ISBN: {{book.isbn}}<br> Author: {{book.author}}<br> Year: {{book.year}}
+    </p>
+
+    <div class="card">
+        <div class="card-header ">
+            <h4>Good Reads Ratings:</h4>
+        </div>
+        <div class="card-body">
+            Average Rating: {{averagerating}}<br> Number of Ratings: {{ratingscount}}
+        </div>
+    </div>
+</div>
+
+{% if session['user_name'] %} {% if reviewed is sameas false %}
+<form class="mb-5" action="{{url_for('post_review')}}" method="post">
+    <input type="hidden" name="book_isbn" value="{{book.isbn}}">
+    <h3 class="mb-4">Leave a review:</h3>
+    <hr>
+    <div class="form-group ">
+        <label for="bookrating">Rating:</label>
+        <input class="form-control col-1" name="book_rating" id="book_rating" type="number" name="bookrating" min="1" max="5">
+    </div>
+    <div class="form-group ">
+        <label for="bookReview ">Comment:</label>
+        <textarea class="form-control" name="book_review" id="book_review" rows="3"></textarea>
+    </div>
+    <div class="form-group ">
+        <button class="btn btn-dark ">Submit Review</button>
+    </div>
+</form>
+{% endif %} {% endif %}
+
+<h3 class="mb-4 ">Reviews:</h3>
+<hr> {% for rev in reviews %}
+<div class="bg-light p-4 my-3">
+    <h5>User: {{rev.user_name}}</h5>
+    <p>Rating: {{rev.rating}}
+        <br> Comment: {{rev.review}}
+    </p>
+</div>
+{% endfor %} {% endblock%}

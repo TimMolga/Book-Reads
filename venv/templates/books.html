@@ -1,0 +1,26 @@
+{% extends "layout.html" %} {% block title %} Search Books {% endblock %} {% block body %}
+<h1 class="display-3 mt-5">Results</h1>
+<p class="lead mb-5 ml-1">Matches for "{{searchbox}}"</p>
+{% if bookfull|length %} {% for book in bookfull%}
+<div class="card mb-3 border border-dark">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{{url_for('book', book_isbn=book.isbn)}}" class="card-link">{{book.title}}</a>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">ISBN: {{book.isbn}}</h6>
+        <p class="card-text">Author: {{book.author}} <br> Year: {{book.year}}</p>
+    </div>
+</div>
+{% endfor %} {% elif bookpart|length %} {% for book in bookpart%}
+<div class="card mb-3 border border-dark">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{{url_for('book', book_isbn=book.isbn)}}" class="card-link">{{book.title}}</a>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">ISBN: {{book.isbn}}</h6>
+        <p class="card-text">Author: {{book.author}} <br> Year: {{book.year}}</p>
+    </div>
+</div>
+{% endfor %} {% else %}
+<p class="lead">There are no matches to your search.</p>
+{% endif %} {% endblock%}

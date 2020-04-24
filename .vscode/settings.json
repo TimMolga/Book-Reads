@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "c:\\Users\\timot\\Documents\\Harvard Courses\\Project1\\venv\\Scripts\\python.exe",
+    "python.linting.pylintArgs": ["--load-plugins", "pylint-flask"]
+}
