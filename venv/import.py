@@ -10,6 +10,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 def main():
+    """
+    Helper method to import data from books.csv file and commit to db.
+    """
     rows = 0
     f = open("books.csv")
     reader = csv.reader(f)

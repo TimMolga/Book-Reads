@@ -1,6 +1,9 @@
-{% extends "layout.html" %} {% block title %} Search Books {% endblock %} {% block body %}
+{% extends "layout.html" %} {% block title %} Search Books {% endblock %} 
+<!--Books Result Page-->
+{% block body %}
 <h1 class="display-3 mt-5">Results</h1>
 <p class="lead mb-5 ml-1">Matches for "{{searchbox}}"</p>
+<!--Query Exact Match-->
 {% if bookfull|length %} {% for book in bookfull%}
 <div class="card mb-3 border border-dark">
     <div class="card-body">
@@ -11,7 +14,9 @@
         <p class="card-text">Author: {{book.author}} <br> Year: {{book.year}}</p>
     </div>
 </div>
-{% endfor %} {% elif bookpart|length %} {% for book in bookpart%}
+{% endfor %} 
+<!--Query Partial Match-->
+{% elif bookpart|length %} {% for book in bookpart%}
 <div class="card mb-3 border border-dark">
     <div class="card-body">
         <h5 class="card-title">

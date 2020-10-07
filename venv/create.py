@@ -9,6 +9,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 def main():
+    """
+    Helper method to create models in database.
+    """
     db.create_all()
 
 if __name__ == "__main__":

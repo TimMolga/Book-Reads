@@ -1,11 +1,13 @@
-{% extends "layout.html" %} {% block title %} Book {% endblock %} {% block nav %}
+{% extends "layout.html" %} {% block title %} Book {% endblock %}
+<!--Single Book Page-->
+{% block nav %}
 <button class="btn btn-light">Logout</button> {% endblock %} {% block body %}
 <div class="jumbotron mt-5">
     <h1 class="display-4 mb-3">{{book.title}}</h1>
     <p class="lead">
         ISBN: {{book.isbn}}<br> Author: {{book.author}}<br> Year: {{book.year}}
     </p>
-
+    <!--GoodReads API data-->
     <div class="card">
         <div class="card-header ">
             <h4>Good Reads Ratings:</h4>
@@ -16,6 +18,7 @@
     </div>
 </div>
 
+<!--Section to Post Book Review-->
 {% if session['user_name'] %} {% if reviewed is sameas false %}
 <form class="mb-5" action="{{url_for('post_review')}}" method="post">
     <input type="hidden" name="book_isbn" value="{{book.isbn}}">
@@ -35,6 +38,7 @@
 </form>
 {% endif %} {% endif %}
 
+<!--Book Review Section-->
 <h3 class="mb-4 ">Reviews:</h3>
 <hr> {% for rev in reviews %}
 <div class="bg-light p-4 my-3">
