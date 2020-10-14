@@ -40,6 +40,7 @@
 
 <!--Book Review Section-->
 <h3 class="mb-4 ">Reviews:</h3>
+{% if reviews|length %}
 <hr> {% for rev in reviews %}
 <div class="bg-light p-4 my-3">
     <h5>User: {{rev.user_name}}</h5>
@@ -47,4 +48,8 @@
         <br> Comment: {{rev.review}}
     </p>
 </div>
-{% endfor %} {% endblock%}
+{% endfor %}
+{% else %}
+<p>There are no reviews for this book.</p>
+{% endif %}
+ {% endblock%}
