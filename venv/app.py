@@ -5,7 +5,7 @@ from flask_session import Session
 from sqlalchemy import create_engine, or_, and_
 from sqlalchemy.orm import scoped_session, sessionmaker
 from werkzeug.security import generate_password_hash, check_password_hash
-from goodreadsapi import get_good_reads_data
+from goodreads import get_good_reads_data
 
 app = Flask(__name__)
 
@@ -125,10 +125,6 @@ def book(book_isbn):
     book = Book.query.get(book_isbn)
     if book is None:
         return render_template("notfound.html", message="Couldn't find a book with that ISBN")
-    #get GoodReads API data
-    # api_key = os.getenv("GOODREADS_APIKEY")
-    # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": api_key, "isbns": book.isbn})
-    # data = res.json()
     datalist = get_good_reads_data(book.isbn)
     averagerating = datalist["average_rating"]
     ratingscount = datalist["ratings_count"]
@@ -175,9 +171,6 @@ def book_api(isbn):
     book = Book.query.get(isbn)
     if book is None:
         return jsonify({"error": "Invalid isbn"}), 422
-    # api_key = os.getenv("GOODREADS_APIKEY")
-    # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": api_key, "isbns": book.isbn})
-    # data = res.json()
     datalist = get_good_reads_data(book.isbn)
     averagerating = datalist["average_rating"]
     ratingscount = datalist["ratings_count"]
